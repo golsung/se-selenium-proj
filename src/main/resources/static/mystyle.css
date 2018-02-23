@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+h1 { font-size:18pt; font-weight:bold; color:gray }
+body { font-size:14pt; font-weight:bold; margin:5px 25px; color:gray }
+table { border-collapse: seperate; border-spacing: 4px; }
+tr { margin:5px }
+th { padding:15px color:white; background:darkgray; margin:5px }
+td { padding:15px color:black; background:#e0e0ff; }
+.err { color:red; }

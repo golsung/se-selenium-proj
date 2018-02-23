@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="mystyle.css" />
+	<title id="title1">New Member Page</title>
+</head>
+<body>
+	<table>
+		<form method="post" action="/" th:object="${member}">
+		<tr>
+			<td><label for="name">이름</label></td>
+			<td><input type="text" id="name1" name="name" th:value="*{name}" th:errorclass="err" />
+			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="err"></div></td>
+		</tr>
+		<tr>
+			<td><label for="email">이메일</label></td>
+			<td><input type="text" id="email1" name="email" th:value="*{email}" th:errorclass="err" />
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="err"></div></td>
+		</tr>	
+		<tr>
+			<td><label for="score">점수</label></td>
+			<td><input type="text" id="score1" name="score" th:value="*{score}" />
+			<div th:if="${#fields.hasErrors('score')}" th:errors="*{score}" th:errorclass="err"></div></td>
+		</tr>	
+		<tr>
+			<td></td><td><input type="submit" id="btnCreateMember" style="margin-left: 50%" /></td>
+		</tr>
+		</form>
+		</table>		
+	<hr/>
+	<table>
+		<tr th:each="memb: ${members}">
+			<td th:text="${memb.name}">Insang</td>
+			<td th:text="${memb.email}">insang@hansung.ac.kr</td>	
+			<td th:text="${memb.score}">0</td>		
+			<td>
+				<form method="get" action="/edit">
+					<input type="submit" value="편집" />
+					<input type="hidden" name="id" th:value="${memb.id}" />
+				</form>
+			</td>
+			<td>
+				<form method="post" action="/delete">
+					<input type="submit" value="삭제" />
+					<input type="hidden" name="id" th:value="${memb.id}" />
+				</form>
+			</td>	
+		</tr>
+	</table>
+	<div th:if="${not #lists.isEmpty(members)}">
+		<form method="post" action="/deleteall">
+			<input id="delall" type="submit" value="delete all" />
+		</form>
+	</div>
+</body>
+</html>
